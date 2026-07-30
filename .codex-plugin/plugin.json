@@ -11,6 +11,7 @@
   "license": "MIT",
   "keywords": ["brevity", "output-style", "attention", "productivity"],
   "skills": "./skills/",
+  "commands": "./commands/",
   "hooks": "./hooks/goldfish-hooks.json",
   "interface": {
     "displayName": "Goldfish Attention Span",
@@ -18,7 +19,7 @@
     "longDescription": "Final pass over every reply: compress free text to 100 words, then end with exactly one framed line naming the single question or action that decides the reader's next move.",
     "developerName": "Pavel 'PK' Kaminsky",
     "category": "Productivity",
-    "capabilities": ["Instructions", "Lifecycle hooks"],
+    "capabilities": ["Instructions", "Lifecycle hooks", "Slash commands"],
     "websiteURL": "https://github.com/kaminskypavel/goldfish-attention-skill",
     "defaultPrompt": [
       "Use goldfish mode for this task.",

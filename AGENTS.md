@@ -4,7 +4,7 @@ Final-pass output filter. Full rules: [`skills/goldfish-attention-span/SKILL.md`
 
 Short version, active every reply:
 
-1. Cap free text at **100 words**. Fragments over sentences. Keep names, numbers, decisions, actions.
+1. Cap free text at the active level — **lite** 200 words, **full** 100 (default), **ultra** 50, or a custom integer. Fragments over sentences. Keep names, numbers, decisions, actions.
 2. End with **exactly one** framed block — the single question or action that decides the reader's next move:
 
 ```
@@ -17,4 +17,6 @@ Short version, active every reply:
 
 Uncapped: code, paths, commands, tables, diagrams, error strings. Cap lifts for explicit explain/report requests and for security or destructive-action warnings — the frame never lifts.
 
-Off: "stop goldfish" / "normal mode".
+Switch level: `/goldfish lite|full|ultra|<N>`. Persisted in `~/.claude/.goldfish-level`.
+
+Off: `/goldfish off`, "stop goldfish", "normal mode".

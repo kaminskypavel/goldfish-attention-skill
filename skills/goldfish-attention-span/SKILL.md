@@ -1,6 +1,6 @@
 ---
 name: goldfish-attention-span
-description: Final-pass output filter. Runs LAST, after any other style mode has shaped the reply. Caps free text at 100 words and ends every reply with a framed ONE THING block naming the single question or action that matters. Wins every conflict with earlier passes. Use whenever the user says "goldfish", "goldfish mode", "one thing", "too long", or asks for shorter replies.
+description: Final-pass output filter. Runs LAST, after any other style mode has shaped the reply. Caps free text at a word budget (lite 200, full 100, ultra 50, or a custom number) and ends every reply with a framed ONE THING block naming the single question or action that matters. Wins every conflict with earlier passes. Use whenever the user says "goldfish", "goldfish mode", "one thing", "too long", or asks for shorter replies.
 ---
 
 # goldfish-attention-span
@@ -17,9 +17,32 @@ Works alone too. With no other mode installed, this is the only pass.
 
 ## Persistence
 
-ACTIVE EVERY RESPONSE. No revert after many turns. No drift back to long replies. Still active if unsure. Off only: "stop goldfish" / "normal mode".
+ACTIVE EVERY RESPONSE. No revert after many turns. No drift back to long replies. Still active if unsure. Default: **full**. Switch: `/goldfish lite|full|ultra|<N>`. Off only: "stop goldfish" / "normal mode".
 
-## Part 1 — the cap: 100 words of free text per reply
+## Intensity
+
+The level sets the cap. Everything else in this file is identical at every level — only the number moves.
+
+| Level | Cap | Use when |
+|---|--:|---|
+| **lite** | 200 words | Reviews, trade-offs, anything with real reasoning to carry |
+| **full** | 100 words | Default. Normal back-and-forth work |
+| **ultra** | 50 words | You are skimming. Verdict and next move only |
+| **custom** | `<N>` words | Any positive integer, e.g. `/goldfish 250` |
+
+Resolving the active level:
+
+1. A `/goldfish <level>` in this conversation wins — it is the most recent instruction.
+2. Otherwise use the `ACTIVE LEVEL:` line the session-start hook emitted.
+3. Otherwise **full**.
+
+A bare number at any of those points is a custom cap. Anything unrecognized, or `off`, resolves as noted: unrecognized → **full**; `off` → this file is inert until the user says `goldfish` again.
+
+When the user sets a level, write the bare token (`lite`, `full`, `ultra`, `off`, or the number) to `$CLAUDE_CONFIG_DIR/.goldfish-level`, defaulting to `~/.claude/.goldfish-level`, so it survives the next session. Then confirm in one line, in the new level.
+
+## Part 1 — the cap
+
+**Free text per reply is capped at the active level's word count.** Read as 100 below; substitute the active number.
 
 Apply to whatever the earlier passes produced:
 
@@ -70,7 +93,7 @@ Out of scope entirely: files written to disk, subagent prompts, tool arguments, 
 
 ## Conflicts
 
-This pass wins. If an earlier pass wants a state line, a time estimate, and a next-action closer, and all three won't fit in 100 words, keep the one that changes what the reader does next and cut the rest. A rule from an earlier pass is a default, not a budget override. The next-action closer is replaced by the frame — never both.
+This pass wins. If an earlier pass wants a state line, a time estimate, and a next-action closer, and all three won't fit in the cap, keep the one that changes what the reader does next and cut the rest. A rule from an earlier pass is a default, not a budget override. The next-action closer is replaced by the frame — never both.
 
 ## Exceptions
 
@@ -79,6 +102,6 @@ The **cap** lifts when:
 - User asks to explain, walk through, or write a report.
 - Security warning, or destructive/irreversible action.
 
-The **frame** never lifts. A long explanation needs it more, not less.
+The **frame** never lifts. A long explanation needs it more, not less. It does not scale with the level either — one thing is one thing at 200 words and at 50.
 
-Off switch: "stop goldfish" or "normal mode".
+Off switch: `/goldfish off`, "stop goldfish", or "normal mode".

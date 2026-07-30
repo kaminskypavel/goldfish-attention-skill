@@ -6,7 +6,7 @@
 
 Your agent answers in nine paragraphs. You read two. The thing you actually needed was in paragraph seven.
 
-Goldfish is the last pass over every reply: **100 words of free text, then one framed line** — the single question or action that decides what you do next.
+Goldfish is the last pass over every reply: **a word budget, then one framed line** — the single question or action that decides what you do next. Default budget is 100 words.
 
 ## Before / after
 
@@ -44,9 +44,21 @@ Active from the next session start. No config, no dependencies, no Node.
 
 **Any other agent** — copy [`skills/goldfish-attention-span/SKILL.md`](skills/goldfish-attention-span/SKILL.md) into your rules file (`AGENTS.md`, `.cursor/rules/`, `.windsurf/rules/`, `CLAUDE.md`, …). It is one self-contained markdown file with no moving parts.
 
+## Levels
+
+```bash
+/goldfish lite     # 200 words — reviews, trade-offs, real reasoning
+/goldfish          # 100 words — default
+/goldfish ultra    #  50 words — verdict and next move only
+/goldfish 250      # any positive integer
+/goldfish off      # inert until you say goldfish again
+```
+
+Only the number moves — every other rule is identical at every level, and the frame never scales. The level persists in `~/.claude/.goldfish-level`, so it survives `/clear` and the next session.
+
 ## The two rules
 
-**1. Cap.** 100 words of free text per reply. Fragments over sentences. Names, numbers, decisions and actions survive; explanation and repetition do not.
+**1. Cap.** The active level's word count of free text per reply. Fragments over sentences. Names, numbers, decisions and actions survive; explanation and repetition do not.
 
 **2. Frame.** Exactly one block, last thing in the reply, max 15 words:
 
@@ -74,13 +86,21 @@ Goldfish is a *final* pass. It composes with voice/structure modes and wins ever
 2. [i-have-adhd](https://github.com/ayghri/i-have-adhd) — action-first, numbered steps
 3. **goldfish-attention-span** — compress to the cap, then frame the one thing
 
-If an earlier mode wants a state line, an estimate and a closer, and they don't fit in 100 words, goldfish keeps the one that changes what you do next. Its next-action closer becomes the frame — never both.
+If an earlier mode wants a state line, an estimate and a closer, and they don't fit in the cap, goldfish keeps the one that changes what you do next. Its next-action closer becomes the frame — never both.
 
 Works fine alone.
 
 ## Off
 
-Say `stop goldfish` or `normal mode`.
+`/goldfish off`, `stop goldfish`, or `normal mode`.
+
+## Tests
+
+```bash
+sh tests/activate.test.sh
+```
+
+Covers level resolution in the session-start hook: defaults, custom numbers, whitespace, junk rejection, `off`, and a broken install.
 
 ## License
 

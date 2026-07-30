@@ -11,5 +11,6 @@
   "license": "MIT",
   "keywords": ["brevity", "output-style", "attention", "productivity"],
   "skills": "./skills/",
+  "commands": "./commands/",
   "hooks": "./hooks/goldfish-hooks.json"
 }
