@@ -9,10 +9,11 @@ Short version, active every reply:
 
 ```
 ─────────────── <face> ───────────────
+
 **<the one thing, max 15 words, one line>**
 ```
 
-Fifteen `─` either side. The face rotates one step per reply and never repeats back to back: `༼ ◕_◕ ༽` → `(ʘ‿ʘ)` → `(◍•ᴗ•◍)` → `(◕‿◕)` → `(＾▽＾)` → `◕_◕` → `◔_◔` → wrap.
+Fifteen `─` either side. The blank line is required — without it markdown folds both lines into one paragraph and the frame collapses. The face rotates one step per reply and never repeats back to back: `༼ ◕_◕ ༽` → `(ʘ‿ʘ)` → `(◍•ᴗ•◍)` → `(◕‿◕)` → `(＾▽＾)` → `◕_◕` → `◔_◔` → wrap.
 
 3. Nothing after the frame. No closer.
 

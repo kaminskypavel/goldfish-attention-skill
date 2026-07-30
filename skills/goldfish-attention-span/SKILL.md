@@ -56,10 +56,11 @@ Apply to the reply as drafted — including anything an earlier pass wrote:
 
 **Every reply ends with the frame.** Under it, the single question or detail that decides the reader's next move. Not a summary. Not a recap. One thing.
 
-Format — the separator line, then the one thing in bold directly beneath it:
+Format — the separator line, a blank line, then the one thing in bold:
 
 ```
 ─────────────── <face> ───────────────
+
 **<the one thing, max 15 words, one line>**
 ```
 
@@ -81,7 +82,7 @@ Rules:
 
 - **Copy the separator character for character.** Fifteen `─`, space, the face, space, fifteen `─`. Faces differ in width and that is fine — the dash count never changes to compensate. Never redraw a face, never pad the rule out to match the text, never stretch it to the terminal. It stays narrow on purpose, so it survives a split pane without wrapping.
 - **No code fence, ever.** The separator is plain text. Fence it and `` `code` `` on the line below turns into literal backticks with no colour. Left unfenced, both render.
-- **Nothing between the two lines.** Separator, then the words, adjacent. A blank line there breaks the pair apart.
+- **One blank line between the separator and the words.** Not optional. Markdown folds consecutive lines into a single paragraph, so without it the renderer runs the separator and the sentence together on one line and the frame collapses.
 - **Exactly one per reply.** Two frames is zero frames.
 - **Last thing in the reply.** Closest to where the reader types.
 - **One line, max 15 words.** If it needs two lines, it isn't one thing yet.

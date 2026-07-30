@@ -23,6 +23,7 @@ Goldfish is the last pass over every reply: **a word budget, then one fish.** Un
 > Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
 >
 > ─────────────── ༼ ◕_◕ ༽ ───────────────
+>
 > **Run `npm test -- auth` to confirm.**
 
 ## Install
@@ -41,15 +42,15 @@ Active next session. No config, no dependencies, no Node. Any other agent: drop 
 
 ## Levels
 
-```bash
-/goldfish lite     # 200 words — reviews, trade-offs, real reasoning
-/goldfish          # 100 words — default
-/goldfish ultra    #  50 words — verdict and next move only
-/goldfish 250      # any positive integer
-/goldfish off
-```
+| Command | Cap | Reach for it when |
+|---|--:|---|
+| `/goldfish lite` | 200 words | A review or a trade-off — something with reasoning to carry |
+| `/goldfish` | 100 words | Default. Normal back-and-forth |
+| `/goldfish ultra` | 50 words | You are skimming. Verdict and next move, nothing else |
+| `/goldfish 250` | any integer | You want a specific budget |
+| `/goldfish off` | — | Inert until you say `goldfish` again |
 
-Only the number moves. Persists in `~/.claude/.goldfish-level`, so it survives `/clear`.
+Only the number moves — every other rule is identical at every level, and the frame never scales. The level persists in `~/.claude/.goldfish-level`, so it survives `/clear` and the next session.
 
 ## Rules
 
