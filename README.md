@@ -42,6 +42,12 @@ codex plugin marketplace add kaminskypavel/goldfish-attention-skill
 codex plugin add goldfish-attention-span@goldfish-attention-span
 ```
 
+Or, for the 30-odd other agents — Cursor, Cline, Gemini CLI, Antigravity, Continue and the rest:
+
+```bash
+npx skills add kaminskypavel/goldfish-attention-skill
+```
+
 Active next session. No config, no dependencies, no Node. Any other agent: drop [`SKILL.md`](skills/goldfish-attention-span/SKILL.md) into its rules file — one file, no moving parts.
 
 ## Levels
