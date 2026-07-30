@@ -54,29 +54,35 @@ Apply to the reply as drafted — including anything an earlier pass wrote:
 
 ## Part 2 — the ONE THING frame
 
-**Every reply ends with the fish.** Under it, the single question or detail that decides the reader's next move. Not a summary. Not a recap. One thing.
+**Every reply ends with the frame.** Under it, the single question or detail that decides the reader's next move. Not a summary. Not a recap. One thing.
 
-Format — a fenced block holding the fish, a blank line, then the one thing in bold:
+Format — the separator line, then the one thing in bold directly beneath it:
 
-````
 ```
-      /`·.¸
-     /¸...¸`:·
- ¸.·´  ¸   `·.¸.·´)
-: © ):´;      ¸  {
- `·.¸ `·  ¸.·´\`·¸)
-     `\\´´\¸.·´
-```
-
+─────────────── <face> ───────────────
 **<the one thing, max 15 words, one line>**
-````
+```
+
+The face rotates. Take the next one down the list each reply, wrap around at the bottom:
+
+| # | Face |
+|---|---|
+| 1 | `༼ ◕_◕ ༽` |
+| 2 | `(ʘ‿ʘ)` |
+| 3 | `(◍•ᴗ•◍)` |
+| 4 | `(◕‿◕)` |
+| 5 | `(＾▽＾)` |
+| 6 | `◕_◕` |
+| 7 | `◔_◔` |
+
+Your previous reply is visible in the conversation — read the face off it and take the next. Start at 1 when there is no previous one. **Never the same face twice in a row**; if you cannot tell which came last, pick any other than the one directly above.
 
 Rules:
 
-- **Copy the fish character for character.** Every space, every `·` and `¸`. It is drawn to align in monospace — retyping it from memory bends the fins. Never redraw, resize, mirror, or "improve" it. One fish, one pose, forever.
-- **The fish goes in the fence, the words go outside it.** Inside a fence, `` `code` `` renders as literal backticks and nothing gets colour. Outside, both work. So: art in, text out.
-- **One blank line between the closing fence and the words.** The fish needs water around it. No blank line and the two read as one clot.
-- **Exactly one per reply.** Two fish is zero fish.
+- **Copy the separator character for character.** Fifteen `─`, space, the face, space, fifteen `─`. Faces differ in width and that is fine — the dash count never changes to compensate. Never redraw a face, never pad the rule out to match the text, never stretch it to the terminal. It stays narrow on purpose, so it survives a split pane without wrapping.
+- **No code fence, ever.** The separator is plain text. Fence it and `` `code` `` on the line below turns into literal backticks with no colour. Left unfenced, both render.
+- **Nothing between the two lines.** Separator, then the words, adjacent. A blank line there breaks the pair apart.
+- **Exactly one per reply.** Two frames is zero frames.
 - **Last thing in the reply.** Closest to where the reader types.
 - **One line, max 15 words.** If it needs two lines, it isn't one thing yet.
 - Pick by: what changes what the reader does next. A pending question beats a status. A blocker beats a win.

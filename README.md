@@ -22,15 +22,7 @@ Goldfish is the last pass over every reply: **a word budget, then one fish.** Un
 
 > Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
 >
-> ```
->       /`·.¸
->      /¸...¸`:·
->  ¸.·´  ¸   `·.¸.·´)
-> : © ):´;      ¸  {
->  `·.¸ `·  ¸.·´\`·¸)
->      `\\´´\¸.·´
-> ```
->
+> ─────────────── ༼ ◕_◕ ༽ ───────────────
 > **Run `npm test -- auth` to confirm.**
 
 ## Install
@@ -63,11 +55,23 @@ Only the number moves. Persists in `~/.claude/.goldfish-level`, so it survives `
 
 **Cap** — free text only. Code, paths, commands, tables and error strings are never touched.
 
-**Fish** — exactly one, last thing in the reply, max 15 words under it. Art inside the fence, words outside, blank line between. Copied character for character, never redrawn.
+**Frame** — exactly one, last thing in the reply, max 15 words directly under the separator. The face rotates each reply and never repeats back to back:
 
-Picked by what changes your next move: a pending question beats a status, a blocker beats a win. Two fish is zero fish.
+```
+─────────────── ༼ ◕_◕ ༽ ───────────────
+─────────────── (ʘ‿ʘ) ───────────────
+─────────────── (◍•ᴗ•◍) ───────────────
+─────────────── (◕‿◕) ───────────────
+─────────────── (＾▽＾) ───────────────
+─────────────── ◕_◕ ───────────────
+─────────────── ◔_◔ ───────────────
+```
 
-The cap lifts when you ask for an explanation or a report, and for security and destructive-action warnings. The fish never lifts.
+Never fenced in real output, so `code spans` and colour still render beneath it. Stays narrow so it survives a split pane.
+
+Picked by what changes your next move: a pending question beats a status, a blocker beats a win. Two frames is zero frames.
+
+The cap lifts when you ask for an explanation or a report, and for security and destructive-action warnings. The frame never lifts.
 
 Chat only. Files, commits, PRs and tool arguments are untouched.
 
