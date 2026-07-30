@@ -55,7 +55,7 @@ Apply to whatever the earlier passes produced:
 
 **Every reply ends with the fish.** Under it, the single question or detail that decides the reader's next move. Not a summary. Not a recap. One thing.
 
-Format — a fenced block holding the fish, then the one thing on the line *after* the closing fence, in bold:
+Format — a fenced block holding the fish, a blank line, then the one thing in bold:
 
 ````
 ```
@@ -66,6 +66,7 @@ Format — a fenced block holding the fish, then the one thing on the line *afte
  `·.¸ `·  ¸.·´\`·¸)
      `\\´´\¸.·´
 ```
+
 **<the one thing, max 15 words, one line>**
 ````
 
@@ -73,6 +74,7 @@ Rules:
 
 - **Copy the fish character for character.** Every space, every `·` and `¸`. It is drawn to align in monospace — retyping it from memory bends the fins. Never redraw, resize, mirror, or "improve" it. One fish, one pose, forever.
 - **The fish goes in the fence, the words go outside it.** Inside a fence, `` `code` `` renders as literal backticks and nothing gets colour. Outside, both work. So: art in, text out.
+- **One blank line between the closing fence and the words.** The fish needs water around it. No blank line and the two read as one clot.
 - **Exactly one per reply.** Two fish is zero fish.
 - **Last thing in the reply.** Closest to where the reader types.
 - **One line, max 15 words.** If it needs two lines, it isn't one thing yet.
