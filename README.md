@@ -18,13 +18,10 @@ Goldfish is the last pass over every reply: **a word budget, then one fish.** Un
 
 ## Before / after
 
-> I've gone ahead and updated the authentication middleware. The issue was that the token expiry check was using a strict less-than comparison, which meant tokens expiring exactly at the boundary were being rejected one second early. I changed it to less-than-or-equal. I also noticed the refresh logic could be cleaner, so let me know if you'd like me to look at that as well. The tests should pass now, but you may want to run them to confirm. Let me know if you need anything else!
-
-> Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
->
-> ─────────────── ༼ ◕_◕ ༽ ───────────────
->
-> **Run `npm test -- auth` to confirm.**
+| Without | With goldfish |
+|---|---|
+| I've gone ahead and updated the authentication middleware. The issue was that the token expiry check was using a strict less-than comparison, which meant tokens expiring exactly at the boundary were being rejected one second early. I changed it to less-than-or-equal. I also noticed the refresh logic could be cleaner, so let me know if you'd like me to look at that as well. The tests should pass now, but you may want to run them to confirm. Let me know if you need anything else! | Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.<br><br>─────────────── ༼ ◕_◕ ༽ ───────────────<br><br>**Run `npm test -- auth` to confirm.** |
+| **86 words** | **21 words** |
 
 ## Install
 
