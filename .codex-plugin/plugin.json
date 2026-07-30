@@ -26,6 +26,8 @@
       "Too long — goldfish it.",
       "What's the one thing here?"
     ],
-    "brandColor": "#F5A623"
+    "brandColor": "#FA6800",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
   }
 }

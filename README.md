@@ -1,6 +1,14 @@
-<h1 align="center">🐠 Goldfish Attention Span</h1>
+<p align="center">
+  <img src="assets/logo.png" width="260" alt="Goldfish Attention Span">
+</p>
 
-<p align="center"><em>You read the first line. Then the frame. That was the whole reply.</em></p>
+<p align="center"><em>You read the first line. Then the fish. That was the whole reply.</em></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-FA6800?style=flat-square" alt="Works with Claude Code and Codex">
+  <img src="https://img.shields.io/badge/dependencies-none-FA6800?style=flat-square" alt="No dependencies">
+  <img src="https://img.shields.io/badge/license-MIT-FA6800?style=flat-square" alt="MIT license">
+</p>
 
 ---
 
