@@ -19,10 +19,14 @@ Goldfish is the last pass over every reply: **a word budget, then one framed lin
 > Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
 >
 > ```
-> ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-> ▶  Run `npm test -- auth` to confirm.
-> ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+>       /`·.¸
+>      /¸...¸`:·
+>  ¸.·´  ¸   `·.¸.·´)
+> : © ):´;      ¸  {
+>  `·.¸ `·  ¸.·´\`·¸)
+>      `\\´´\¸.·´
 > ```
+> **Run `npm test -- auth` to confirm.**
 
 ## Install
 
@@ -60,15 +64,23 @@ Only the number moves — every other rule is identical at every level, and the 
 
 **1. Cap.** The active level's word count of free text per reply. Fragments over sentences. Names, numbers, decisions and actions survive; explanation and repetition do not.
 
-**2. Frame.** Exactly one block, last thing in the reply, max 15 words:
+**2. Fish.** Exactly one, last thing in the reply, max 15 words under it:
 
+````
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-▶  <the one thing>
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      /`·.¸
+     /¸...¸`:·
+ ¸.·´  ¸   `·.¸.·´)
+: © ):´;      ¸  {
+ `·.¸ `·  ¸.·´\`·¸)
+     `\\´´\¸.·´
 ```
+**<the one thing>**
+````
 
-Picked by what changes your next move. A pending question beats a status. A blocker beats a win. Two frames is zero frames.
+Picked by what changes your next move. A pending question beats a status. A blocker beats a win. Two fish is zero fish.
+
+The art goes inside the fence so it stays aligned; the words go outside it so `code spans` and colour still render. Fish is copied character for character — never redrawn, resized or mirrored.
 
 ## What is never compressed
 
