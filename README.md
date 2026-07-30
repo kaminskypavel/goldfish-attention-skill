@@ -12,17 +12,13 @@
 
 ---
 
-Your agent answers in nine paragraphs. You read two. The thing you actually needed was in paragraph seven.
+Nine paragraphs. You read two. What you needed was in paragraph seven.
 
-Goldfish is the last pass over every reply: **a word budget, then one framed line** — the single question or action that decides what you do next. Default budget is 100 words.
+Goldfish is the last pass over every reply: **a word budget, then one fish.** Under the fish, the single thing that decides your next move.
 
 ## Before / after
 
-**Before:**
-
 > I've gone ahead and updated the authentication middleware. The issue was that the token expiry check was using a strict less-than comparison, which meant tokens expiring exactly at the boundary were being rejected one second early. I changed it to less-than-or-equal. I also noticed the refresh logic could be cleaner, so let me know if you'd like me to look at that as well. The tests should pass now, but you may want to run them to confirm. Let me know if you need anything else!
-
-**After:**
 
 > Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
 >
@@ -39,23 +35,17 @@ Goldfish is the last pass over every reply: **a word budget, then one framed lin
 
 ## Install
 
-**Claude Code**
-
 ```bash
 claude plugin marketplace add kaminskypavel/goldfish-attention-skill
 claude plugin install goldfish-attention-span@goldfish-attention-span
 ```
-
-**Codex**
 
 ```bash
 codex plugin marketplace add kaminskypavel/goldfish-attention-skill --ref main
 codex plugin add goldfish-attention-span@goldfish-attention-span
 ```
 
-Active from the next session start. No config, no dependencies, no Node.
-
-**Any other agent** — copy [`skills/goldfish-attention-span/SKILL.md`](skills/goldfish-attention-span/SKILL.md) into your rules file (`AGENTS.md`, `.cursor/rules/`, `.windsurf/rules/`, `CLAUDE.md`, …). It is one self-contained markdown file with no moving parts.
+Active next session. No config, no dependencies, no Node. Any other agent: drop [`SKILL.md`](skills/goldfish-attention-span/SKILL.md) into its rules file — one file, no moving parts.
 
 ## Levels
 
@@ -64,62 +54,29 @@ Active from the next session start. No config, no dependencies, no Node.
 /goldfish          # 100 words — default
 /goldfish ultra    #  50 words — verdict and next move only
 /goldfish 250      # any positive integer
-/goldfish off      # inert until you say goldfish again
+/goldfish off
 ```
 
-Only the number moves — every other rule is identical at every level, and the frame never scales. The level persists in `~/.claude/.goldfish-level`, so it survives `/clear` and the next session.
+Only the number moves. Persists in `~/.claude/.goldfish-level`, so it survives `/clear`.
 
-## The two rules
+## Rules
 
-**1. Cap.** The active level's word count of free text per reply. Fragments over sentences. Names, numbers, decisions and actions survive; explanation and repetition do not.
+**Cap** — free text only. Code, paths, commands, tables and error strings are never touched.
 
-**2. Fish.** Exactly one, last thing in the reply, max 15 words under it:
+**Fish** — exactly one, last thing in the reply, max 15 words under it. Art inside the fence, words outside, blank line between. Copied character for character, never redrawn.
 
-````
-```
-      /`·.¸
-     /¸...¸`:·
- ¸.·´  ¸   `·.¸.·´)
-: © ):´;      ¸  {
- `·.¸ `·  ¸.·´\`·¸)
-     `\\´´\¸.·´
-```
+Picked by what changes your next move: a pending question beats a status, a blocker beats a win. Two fish is zero fish.
 
-**<the one thing>**
-````
+The cap lifts when you ask for an explanation or a report, and for security and destructive-action warnings. The fish never lifts.
 
-Picked by what changes your next move. A pending question beats a status. A blocker beats a win. Two fish is zero fish.
+Chat only. Files, commits, PRs and tool arguments are untouched.
 
-The art goes inside the fence so it stays aligned; the words go outside it so `code spans` and colour still render. Fish is copied character for character — never redrawn, resized or mirrored.
-
-## What is never compressed
-
-Code blocks, file paths, commands, tables, diagrams, error strings — written normally, in full.
-
-The cap lifts when you ask for an explanation, walkthrough or report, and for security or destructive-action warnings. **The frame never lifts** — a long answer needs it more, not less.
-
-Nothing written to disk is touched: files, commits, PRs, subagent prompts and tool arguments are all out of scope. This shapes chat only.
-
-## Standalone, and stackable
-
-Goldfish depends on nothing. Install it alone and it is the whole pipeline.
-
-Run any other voice or structure mode alongside it and goldfish becomes the *last* pass: the other one drafts, goldfish caps the draft and frames it. Voice is inherited, never undone — a clipped, fragmented draft stays clipped, it just gets shorter. Where the rules disagree, goldfish wins: required sections get capped like anything else, and a next-action closer becomes the fish rather than sitting next to it.
-
-Nothing to configure for this. There is no list of known modes and no ordering to declare — goldfish simply treats whatever reached it as the draft.
+Stacks under any other voice or structure mode — that one drafts, goldfish caps and frames. Voice is inherited, never undone. Nothing to configure.
 
 ## Off
 
 `/goldfish off`, `stop goldfish`, or `normal mode`.
 
-## Tests
+---
 
-```bash
-sh tests/activate.test.sh
-```
-
-Covers level resolution in the session-start hook: defaults, custom numbers, whitespace, junk rejection, `off`, and a broken install.
-
-## License
-
-MIT
+`sh tests/activate.test.sh` · MIT
