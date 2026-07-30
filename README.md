@@ -2,7 +2,7 @@
   <img src="assets/logo.png" width="260" alt="Goldfish Attention Span">
 </p>
 
-<p align="center"><em>An attention span of nine seconds, and an agent that finally respects it.</em></p>
+<p align="center"><em>Make the agent know you have the attention span of a goldfish, and talk accordingly.</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-FA6800?style=flat-square" alt="Works with Claude Code and Codex">
