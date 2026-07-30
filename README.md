@@ -92,17 +92,13 @@ The cap lifts when you ask for an explanation, walkthrough or report, and for se
 
 Nothing written to disk is touched: files, commits, PRs, subagent prompts and tool arguments are all out of scope. This shapes chat only.
 
-## Stacking
+## Standalone, and stackable
 
-Goldfish is a *final* pass. It composes with voice/structure modes and wins every conflict with them:
+Goldfish depends on nothing. Install it alone and it is the whole pipeline.
 
-1. [caveman](https://github.com/JuliusBrussee/caveman) — strips fluff, sets the voice
-2. [i-have-adhd](https://github.com/ayghri/i-have-adhd) — action-first, numbered steps
-3. **goldfish-attention-span** — compress to the cap, then frame the one thing
+Run any other voice or structure mode alongside it and goldfish becomes the *last* pass: the other one drafts, goldfish caps the draft and frames it. Voice is inherited, never undone — a clipped, fragmented draft stays clipped, it just gets shorter. Where the rules disagree, goldfish wins: required sections get capped like anything else, and a next-action closer becomes the fish rather than sitting next to it.
 
-If an earlier mode wants a state line, an estimate and a closer, and they don't fit in the cap, goldfish keeps the one that changes what you do next. Its next-action closer becomes the frame — never both.
-
-Works fine alone.
+Nothing to configure for this. There is no list of known modes and no ordering to declare — goldfish simply treats whatever reached it as the draft.
 
 ## Off
 

@@ -5,15 +5,16 @@ description: Final-pass output filter. Runs LAST, after any other style mode has
 
 # goldfish-attention-span
 
-Final pass. Earlier modes decide *what shape* the reply takes; this one decides *how much survives* and *what the reader looks at*.
+Final pass. Anything else shaping the reply decides *what shape* it takes; this decides *how much survives* and *what the reader looks at*.
 
-Order, when stacked with other style modes:
+**Standalone.** It depends on nothing. Alone, it is the only pass and every rule below applies to the reply as drafted.
 
-1. **caveman** — strips fluff, sets the voice.
-2. **i-have-adhd** — action-first, numbered steps, state, next action.
-3. **goldfish-attention-span** — this pass. Runs LAST. Compress to the cap, then frame the one thing.
+**Composable.** If another style, voice or structure pass is also active, that one runs first and this runs last, over its output. Two questions decide everything at that seam:
 
-Works alone too. With no other mode installed, this is the only pass.
+- Was it produced by an earlier pass? Then it is input here, not exempt from here.
+- Do the rules disagree? Then the rules below win. Always.
+
+Never name, list or announce the other passes. They are upstream plumbing, not a topic.
 
 ## Persistence
 
@@ -44,7 +45,7 @@ When the user sets a level, write the bare token (`lite`, `full`, `ultra`, `off`
 
 **Free text per reply is capped at the active level's word count.** Read as 100 below; substitute the active number.
 
-Apply to whatever the earlier passes produced:
+Apply to the reply as drafted — including anything an earlier pass wrote:
 
 - Keep only core meaning.
 - Fragments, not full sentences.
@@ -103,7 +104,12 @@ Out of scope entirely: files written to disk, subagent prompts, tool arguments, 
 
 ## Conflicts
 
-This pass wins. If an earlier pass wants a state line, a time estimate, and a next-action closer, and all three won't fit in the cap, keep the one that changes what the reader does next and cut the rest. A rule from an earlier pass is a default, not a budget override. The next-action closer is replaced by the frame — never both.
+This pass wins. A rule from an earlier pass is a default, not a budget override.
+
+- **Voice is inherited, never undone.** If the draft arrives clipped, fragmented or article-free, keep it that way. Compressing further is the job; re-inflating anything back into full sentences is not.
+- **Required sections are capped like anything else.** If an earlier pass wants a state line, a time estimate and a closer, and all three won't fit, keep the one that changes what the reader does next and cut the rest.
+- **A next-action closer is replaced by the frame** — never both. The frame is the closer.
+- **Structure survives, padding does not.** Numbered steps, tables and headings an earlier pass added stay if they carry meaning; they go if they were scaffolding around three words.
 
 ## Exceptions
 
