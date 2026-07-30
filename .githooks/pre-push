@@ -1,0 +1,53 @@
+#!/bin/sh
+# Refuse to push plugin changes under a version the remote already has.
+#
+# The version is a cache key: Claude Code caches an installed plugin under
+# .../<name>/<version>/. Ship changed content under an unchanged version and
+# every existing install keeps serving the old copy.
+#
+# A pre-push hook cannot alter the push in flight — git already sealed the SHAs.
+# So this bumps, commits, and stops with a message. Run git push again and the
+# bump goes out with everything else.
+set -eu
+
+MANIFESTS=".claude-plugin/plugin.json .codex-plugin/plugin.json"
+ZERO="0000000000000000000000000000000000000000"
+
+version_at() {   # version recorded in a given commit, empty if unreadable
+  git show "$1:.claude-plugin/plugin.json" 2>/dev/null |
+    python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])' 2>/dev/null || true
+}
+
+local_version=$(python3 -c 'import json; print(json.load(open(".claude-plugin/plugin.json"))["version"])')
+
+while read -r _local_ref local_sha _remote_ref remote_sha; do
+  [ "$local_sha" = "$ZERO" ] && continue                      # branch deletion
+  [ "$remote_sha" = "$ZERO" ] && continue                     # brand new branch
+
+  # Only care when the push actually changes the plugin itself.
+  git diff --quiet "$remote_sha" "$local_sha" -- skills hooks commands \
+    .claude-plugin .codex-plugin AGENTS.md && continue
+
+  [ "$(version_at "$remote_sha")" != "$local_version" ] && continue
+
+  new=$(python3 - $MANIFESTS <<PY
+import pathlib, sys
+major, minor, patch = (int(x) for x in "$local_version".split("."))
+new = f"{major}.{minor}.{patch + 1}"
+for p in map(pathlib.Path, sys.argv[1:]):
+    p.write_text(p.read_text().replace('"version": "$local_version"', f'"version": "{new}"', 1))
+print(new)
+PY
+)
+  git add $MANIFESTS
+  git commit -q -m "chore: bump version to $new"
+
+  echo ""
+  echo "  pre-push: plugin content changed but the version had not."
+  echo "  Bumped $local_version -> $new and committed it."
+  echo "  Run 'git push' again to send both."
+  echo ""
+  exit 1
+done
+
+exit 0
