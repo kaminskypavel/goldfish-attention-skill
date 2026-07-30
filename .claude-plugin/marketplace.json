@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "goldfish-attention-span",
+  "description": "Final-pass output filter for AI agents. Caps replies at 100 words and ends each one with a single framed ONE THING.",
+  "owner": {
+    "name": "Pavel 'PK' Kaminsky",
+    "url": "https://github.com/kaminskypavel"
+  },
+  "plugins": [
+    {
+      "name": "goldfish-attention-span",
+      "description": "100-word cap, one framed ONE THING per reply. Runs last, wins every conflict.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

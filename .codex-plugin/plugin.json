@@ -1,0 +1,30 @@
+{
+  "name": "goldfish-attention-span",
+  "version": "0.1.0",
+  "description": "Final-pass output filter. Caps free text at 100 words and ends every reply with one framed ONE THING.",
+  "author": {
+    "name": "Pavel 'PK' Kaminsky",
+    "url": "https://github.com/kaminskypavel"
+  },
+  "homepage": "https://github.com/kaminskypavel/goldfish-attention-skill",
+  "repository": "https://github.com/kaminskypavel/goldfish-attention-skill",
+  "license": "MIT",
+  "keywords": ["brevity", "output-style", "attention", "productivity"],
+  "skills": "./skills/",
+  "hooks": "./hooks/goldfish-hooks.json",
+  "interface": {
+    "displayName": "Goldfish Attention Span",
+    "shortDescription": "100 words max, one framed ONE THING",
+    "longDescription": "Final pass over every reply: compress free text to 100 words, then end with exactly one framed line naming the single question or action that decides the reader's next move.",
+    "developerName": "Pavel 'PK' Kaminsky",
+    "category": "Productivity",
+    "capabilities": ["Instructions", "Lifecycle hooks"],
+    "websiteURL": "https://github.com/kaminskypavel/goldfish-attention-skill",
+    "defaultPrompt": [
+      "Use goldfish mode for this task.",
+      "Too long — goldfish it.",
+      "What's the one thing here?"
+    ],
+    "brandColor": "#F5A623"
+  }
+}

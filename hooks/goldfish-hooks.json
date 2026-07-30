@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/skills/goldfish-attention-span/SKILL.md\" 2>/dev/null || exit 0",
+            "commandWindows": "Get-Content \"$env:CLAUDE_PLUGIN_ROOT\\skills\\goldfish-attention-span\\SKILL.md\" -Raw -ErrorAction SilentlyContinue",
+            "timeout": 5,
+            "statusMessage": "Loading goldfish mode..."
+          }
+        ]
+      }
+    ]
+  }
+}
