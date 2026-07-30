@@ -2,7 +2,7 @@
   <img src="assets/logo.png" width="260" alt="Goldfish Attention Span">
 </p>
 
-<p align="center"><em>You read the first line. Then the fish. That was the whole reply.</em></p>
+<p align="center"><em>An attention span of nine seconds, and an agent that finally respects it.</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-FA6800?style=flat-square" alt="Works with Claude Code and Codex">
@@ -14,14 +14,21 @@
 
 Nine paragraphs. You read two. What you needed was in paragraph seven.
 
-Goldfish is the last pass over every reply: **a word budget, then one fish.** Under the fish, the single thing that decides your next move.
+Goldfish is the last pass over every reply: **a word budget, then one frame.** Under it, the single thing that decides your next move.
 
 ## Before / after
 
-| Without | With goldfish |
-|---|---|
-| I've gone ahead and updated the authentication middleware. The issue was that the token expiry check was using a strict less-than comparison, which meant tokens expiring exactly at the boundary were being rejected one second early. I changed it to less-than-or-equal. I also noticed the refresh logic could be cleaner, so let me know if you'd like me to look at that as well. The tests should pass now, but you may want to run them to confirm. Let me know if you need anything else! | Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.<br><br>─────────────── ༼ ◕_◕ ༽ ───────────────<br><br>**Run `npm test -- auth` to confirm.** |
-| **86 words** | **21 words** |
+**Without** · 86 words
+
+> I've gone ahead and updated the authentication middleware. The issue was that the token expiry check was using a strict less-than comparison, which meant tokens expiring exactly at the boundary were being rejected one second early. I changed it to less-than-or-equal. I also noticed the refresh logic could be cleaner, so let me know if you'd like me to look at that as well. The tests should pass now, but you may want to run them to confirm. Let me know if you need anything else!
+
+**With goldfish** · 21 words
+
+> Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
+>
+> ─────────────── ༼ ◕_◕ ༽ ───────────────
+>
+> **Run `npm run test:auth` to confirm.**
 
 ## Install
 
@@ -31,7 +38,7 @@ claude plugin install goldfish-attention-span@goldfish-attention-span
 ```
 
 ```bash
-codex plugin marketplace add kaminskypavel/goldfish-attention-skill --ref main
+codex plugin marketplace add kaminskypavel/goldfish-attention-skill
 codex plugin add goldfish-attention-span@goldfish-attention-span
 ```
 
@@ -42,10 +49,12 @@ Active next session. No config, no dependencies, no Node. Any other agent: drop 
 | Command | Cap | Reach for it when |
 |---|--:|---|
 | `/goldfish lite` | 200 words | A review or a trade-off — something with reasoning to carry |
-| `/goldfish` | 100 words | Default. Normal back-and-forth |
+| `/goldfish full` | 100 words | Default. Normal back-and-forth |
 | `/goldfish ultra` | 50 words | You are skimming. Verdict and next move, nothing else |
 | `/goldfish 250` | any integer | You want a specific budget |
 | `/goldfish off` | — | Inert until you say `goldfish` again |
+
+In Codex the prefix is `@`, not `/` — `@goldfish ultra`.
 
 Only the number moves — every other rule is identical at every level, and the frame never scales. The level persists in `~/.claude/.goldfish-level`, so it survives `/clear` and the next session.
 
@@ -53,7 +62,7 @@ Only the number moves — every other rule is identical at every level, and the 
 
 **Cap** — free text only. Code, paths, commands, tables and error strings are never touched.
 
-**Frame** — exactly one, last thing in the reply, max 15 words directly under the separator. The face rotates each reply and never repeats back to back:
+**Frame** — exactly one, last thing in the reply, max 15 words one blank line under the separator. The face rotates each reply and never repeats back to back:
 
 ```
 ─────────────── ༼ ◕_◕ ༽ ───────────────

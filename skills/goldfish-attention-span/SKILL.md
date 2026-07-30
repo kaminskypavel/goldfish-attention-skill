@@ -18,7 +18,7 @@ Never name, list or announce the other passes. They are upstream plumbing, not a
 
 ## Persistence
 
-ACTIVE EVERY RESPONSE. No revert after many turns. No drift back to long replies. Still active if unsure. Default: **full**. Switch: `/goldfish lite|full|ultra|<N>`. Off only: "stop goldfish" / "normal mode".
+ACTIVE EVERY RESPONSE. No revert after many turns. No drift back to long replies. Still active if unsure. Default: **full**. Switch: `/goldfish lite|full|ultra|<N>` (`@goldfish` in Codex). Off only: "stop goldfish" / "normal mode".
 
 ## Intensity
 

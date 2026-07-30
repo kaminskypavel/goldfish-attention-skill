@@ -19,6 +19,6 @@ Fifteen `─` either side. The blank line is required — without it markdown fo
 
 Uncapped: code, paths, commands, tables, diagrams, error strings. Cap lifts for explicit explain/report requests and for security or destructive-action warnings — the frame never lifts.
 
-Switch level: `/goldfish lite|full|ultra|<N>`. Persisted in `~/.claude/.goldfish-level`.
+Switch level: `/goldfish lite|full|ultra|<N>`, or `@goldfish …` in Codex. Persisted in `~/.claude/.goldfish-level`.
 
 Off: `/goldfish off`, "stop goldfish", "normal mode".
