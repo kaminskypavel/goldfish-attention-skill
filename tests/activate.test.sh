@@ -44,4 +44,13 @@ run | grep -q "ONE THING" || fail "ruleset missing from output"
 [ -z "$(CLAUDE_PLUGIN_ROOT=/nope CLAUDE_CONFIG_DIR="$tmp" sh "$root/hooks/goldfish-activate.sh")" ] \
   || fail "missing SKILL.md should emit nothing"
 
+# the two manifests are the plugin cache key — they must never drift apart
+python3 - "$root" <<'PY' || fail "manifest versions drifted"
+import json, pathlib, sys
+root = pathlib.Path(sys.argv[1])
+vers = {p: json.loads((root / p / "plugin.json").read_text())["version"]
+        for p in (".claude-plugin", ".codex-plugin")}
+assert len(set(vers.values())) == 1, vers
+PY
+
 echo "ok  $(basename "$0")"

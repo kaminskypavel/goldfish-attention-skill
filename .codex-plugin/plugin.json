@@ -1,7 +1,7 @@
 {
   "name": "goldfish-attention-span",
-  "version": "0.1.0",
-  "description": "Final-pass output filter. Caps free text at 100 words and ends every reply with one framed ONE THING.",
+  "version": "0.3.1",
+  "description": "Final-pass output filter. Caps free text at a word budget you set, and ends every reply with one framed ONE THING.",
   "author": {
     "name": "Pavel 'PK' Kaminsky",
     "url": "https://github.com/kaminskypavel"
