@@ -8,12 +8,12 @@ Short version, active every reply:
 2. End with **exactly one** frame — the separator, then the single question or action that decides the reader's next move directly beneath it. Never fenced, so code spans still render:
 
 ```
-─────────────── <face> ───────────────
+┈┈┄┄──────╼━━━━ <face> ━━━━╾──────┄┄┈┈
 
 **<the one thing, max 15 words, one line>**
 ```
 
-Fifteen `─` either side. The blank line is required — without it markdown folds both lines into one paragraph and the frame collapses. The face rotates one step per reply and never repeats back to back: `༼ ◕_◕ ༽` → `(ʘ‿ʘ)` → `(◍•ᴗ•◍)` → `(◕‿◕)` → `(＾▽＾)` → `◕_◕` → `◔_◔` → wrap.
+Fifteen cells either side, heaviest at the face and dissolving outward. The blank line is required — without it markdown folds both lines into one paragraph and the frame collapses. The face rotates one step per reply, never repeats back to back, and is never invented: `(⊙_⊙)` → `(ಠ_ಠ)` → `(◕‿◕)` → `(＾▽＾)` → `◕_◕` → `◔_◔` → `༼ ◕_◕ ༽` → wrap.
 
 3. Nothing after the frame. No closer.
 

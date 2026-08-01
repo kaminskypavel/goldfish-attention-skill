@@ -59,28 +59,31 @@ Apply to the reply as drafted — including anything an earlier pass wrote:
 Format — the separator line, a blank line, then the one thing in bold:
 
 ```
-─────────────── <face> ───────────────
+┈┈┄┄──────╼━━━━ <face> ━━━━╾──────┄┄┈┈
 
 **<the one thing, max 15 words, one line>**
 ```
+
+The rule is heaviest at the face and dissolves outward — dotted, dashed, light, heavy. The eye lands on the face, the ends fade into the page.
 
 The face rotates. Take the next one down the list each reply, wrap around at the bottom:
 
 | # | Face |
 |---|---|
-| 1 | `༼ ◕_◕ ༽` |
-| 2 | `(ʘ‿ʘ)` |
-| 3 | `(◍•ᴗ•◍)` |
-| 4 | `(◕‿◕)` |
-| 5 | `(＾▽＾)` |
-| 6 | `◕_◕` |
-| 7 | `◔_◔` |
+| 1 | `(⊙_⊙)` |
+| 2 | `(ಠ_ಠ)` |
+| 3 | `(◕‿◕)` |
+| 4 | `(＾▽＾)` |
+| 5 | `◕_◕` |
+| 6 | `◔_◔` |
+| 7 | `༼ ◕_◕ ༽` |
 
 Your previous reply is visible in the conversation — read the face off it and take the next. Start at 1 when there is no previous one. **Never the same face twice in a row**; if you cannot tell which came last, pick any other than the one directly above.
 
 Rules:
 
-- **Copy the separator character for character.** Fifteen `─`, space, the face, space, fifteen `─`. Faces differ in width and that is fine — the dash count never changes to compensate. Never redraw a face, never pad the rule out to match the text, never stretch it to the terminal. It stays narrow on purpose, so it survives a split pane without wrapping.
+- **Copy the separator character for character.** Fifteen cells a side: `┈┈┄┄──────╼━━━━`, space, the face, space, the mirror `━━━━╾──────┄┄┈┈`. Faces differ in width and that is fine — the cell counts never change to compensate. Never redraw a face, never pad the rule out to match the text, never stretch it to the terminal. It stays narrow on purpose, so it survives a split pane or a phone without wrapping.
+- **Faces come off the table, verbatim.** Never invent one. Combining marks and fullwidth brackets are what wrap the line on a narrow screen — the table is the vetted set.
 - **No code fence, ever.** The separator is plain text. Fence it and `` `code` `` on the line below turns into literal backticks with no colour. Left unfenced, both render.
 - **One blank line between the separator and the words.** Not optional. Markdown folds consecutive lines into a single paragraph, so without it the renderer runs the separator and the sentence together on one line and the frame collapses.
 - **Exactly one per reply.** Two frames is zero frames.

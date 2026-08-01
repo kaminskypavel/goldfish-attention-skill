@@ -26,7 +26,7 @@ Goldfish is the last pass over every reply: **a word budget, then one frame.** U
 
 > Fixed `auth/middleware.ts:42` — expiry check used `<`, now `<=`. Refresh logic untouched.
 >
-> ─────────────── ༼ ◕_◕ ༽ ───────────────
+> ┈┈┄┄──────╼━━━━ ༼ ◕_◕ ༽ ━━━━╾──────┄┄┈┈
 >
 > **Run `npm run test:auth` to confirm.**
 
@@ -71,16 +71,16 @@ Only the number moves — every other rule is identical at every level, and the 
 **Frame** — exactly one, last thing in the reply, max 15 words one blank line under the separator. The face rotates each reply and never repeats back to back:
 
 ```
-─────────────── ༼ ◕_◕ ༽ ───────────────
-─────────────── (ʘ‿ʘ) ───────────────
-─────────────── (◍•ᴗ•◍) ───────────────
-─────────────── (◕‿◕) ───────────────
-─────────────── (＾▽＾) ───────────────
-─────────────── ◕_◕ ───────────────
-─────────────── ◔_◔ ───────────────
+┈┈┄┄──────╼━━━━ (⊙_⊙) ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ (ಠ_ಠ) ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ (◕‿◕) ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ (＾▽＾) ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ ◕_◕ ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ ◔_◔ ━━━━╾──────┄┄┈┈
+┈┈┄┄──────╼━━━━ ༼ ◕_◕ ༽ ━━━━╾──────┄┄┈┈
 ```
 
-Never fenced in real output, so `code spans` and colour still render beneath it. Stays narrow so it survives a split pane.
+The rule is heaviest at the face and dissolves outward — dotted, dashed, light, heavy — so the eye lands on the face and the ends fade off. Never fenced in real output, so `code spans` and colour still render beneath it. Fifteen cells a side, no compensating for face width: narrow enough to survive a split pane or a phone.
 
 Picked by what changes your next move: a pending question beats a status, a blocker beats a win. Two frames is zero frames.
 
