@@ -53,4 +53,22 @@ vers = {p: json.loads((root / p / "plugin.json").read_text())["version"]
 assert len(set(vers.values())) == 1, vers
 PY
 
+# Pi git-install contract: package.json pi.extensions paths exist, no skills list
+python3 - "$root" <<'PY' || fail "pi package.json contract"
+import json, pathlib, sys
+root = pathlib.Path(sys.argv[1])
+pkg = json.loads((root / "package.json").read_text())
+assert "pi-package" in pkg.get("keywords", []), pkg.get("keywords")
+pi = pkg.get("pi") or {}
+assert "skills" not in pi, pi
+exts = pi.get("extensions") or []
+assert exts, pi
+for rel in exts:
+    path = (root / rel).resolve()
+    assert path.is_file(), rel
+    text = path.read_text()
+    assert 'registerCommand("goldfish"' in text, rel
+    assert "before_agent_start" in text, rel
+PY
+
 echo "ok  $(basename "$0")"

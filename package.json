@@ -1,0 +1,28 @@
+{
+  "name": "goldfish-attention-span",
+  "version": "0.3.2",
+  "private": true,
+  "description": "Final-pass output filter. Caps free text at a word budget you set, and ends every reply with one framed ONE THING.",
+  "license": "MIT",
+  "author": "Pavel 'PK' Kaminsky",
+  "homepage": "https://github.com/kaminskypavel/goldfish-attention-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaminskypavel/goldfish-attention-skill.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "goldfish",
+    "brevity",
+    "attention",
+    "productivity"
+  ],
+  "pi": {
+    "extensions": ["./.pi/extensions/goldfish.ts"],
+    "image": "https://raw.githubusercontent.com/kaminskypavel/goldfish-attention-skill/main/assets/logo.png"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  }
+}

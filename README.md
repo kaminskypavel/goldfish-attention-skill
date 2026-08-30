@@ -5,7 +5,7 @@
 <p align="center"><em>Make the agent know you have the attention span of a goldfish, and talk accordingly.</em></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-FA6800?style=flat-square" alt="Works with Claude Code and Codex">
+  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Pi-FA6800?style=flat-square" alt="Works with Claude Code, Codex, and Pi">
   <img src="https://img.shields.io/badge/dependencies-none-FA6800?style=flat-square" alt="No dependencies">
   <img src="https://img.shields.io/badge/license-MIT-FA6800?style=flat-square" alt="MIT license">
 </p>
@@ -32,23 +32,47 @@ Goldfish is the last pass over every reply: **a word budget, then one frame.** U
 
 ## Install
 
+Active next session. No config, no dependencies.
+
+<h3>
+  <img src="assets/harnesses/claude.svg" width="22" height="22" alt="">
+  Claude Code
+</h3>
+
 ```bash
 claude plugin marketplace add kaminskypavel/goldfish-attention-skill
 claude plugin install goldfish-attention-span@goldfish-attention-span
 ```
+
+<h3>
+  <img src="assets/harnesses/codex.svg" width="22" height="22" alt="">
+  Codex
+</h3>
 
 ```bash
 codex plugin marketplace add kaminskypavel/goldfish-attention-skill
 codex plugin add goldfish-attention-span@goldfish-attention-span
 ```
 
-Or, for the 30-odd other agents — Cursor, Cline, Gemini CLI, Antigravity, Continue and the rest:
+<h3>
+  <img src="assets/harnesses/pi.svg" width="22" height="22" alt="">
+  Pi
+</h3>
+
+```bash
+pi install git:github.com/kaminskypavel/goldfish-attention-skill
+```
+
+<h3>
+  <img src="assets/harnesses/npm.svg" width="22" height="22" alt="">
+  Cursor, Cline, Gemini CLI, and the rest
+</h3>
 
 ```bash
 npx skills add kaminskypavel/goldfish-attention-skill
 ```
 
-Active next session. No config, no dependencies, no Node. Any other agent: drop [`SKILL.md`](skills/goldfish-attention-span/SKILL.md) into its rules file — one file, no moving parts.
+Anything else: drop [`SKILL.md`](skills/goldfish-attention-span/SKILL.md) into its rules file — one file, no moving parts.
 
 ## Levels
 
@@ -60,7 +84,7 @@ Active next session. No config, no dependencies, no Node. Any other agent: drop 
 | `/goldfish 250` | any integer | You want a specific budget |
 | `/goldfish off` | — | Inert until you say `goldfish` again |
 
-In Codex the prefix is `@`, not `/` — `@goldfish ultra`.
+In Codex the prefix is `@`, not `/` — `@goldfish ultra`. Pi uses `/goldfish` like Claude.
 
 Only the number moves — every other rule is identical at every level, and the frame never scales. The level persists in `~/.claude/.goldfish-level`, so it survives `/clear` and the next session.
 
