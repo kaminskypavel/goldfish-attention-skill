@@ -12,6 +12,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import type {
 	BeforeAgentStartEventResult,
 	ExtensionAPI,
+	ExtensionContext,
 } from "@earendil-works/pi-coding-agent";
 
 const extensionDir = dirname(fileURLToPath(import.meta.url));
@@ -72,7 +73,18 @@ function applyPromptToLevel(prompt: string, level: string): { level: string; per
 	return { level, persist: false };
 }
 
+function syncStatus(ctx: Pick<ExtensionContext, "ui">, level: string): void {
+	const theme = ctx.ui.theme;
+	ctx.ui.setStatus(
+		"goldfish",
+		`🐡 ${theme.fg("muted", "goldfish level: ")}${theme.fg("text", level.toUpperCase())}`,
+	);
+}
+
 export default function goldfish(pi: ExtensionAPI) {
+	pi.on("session_start", async (_event, ctx) => {
+		syncStatus(ctx, await readLevel());
+	});
 	pi.registerCommand("goldfish", {
 		description: "Switch goldfish cap level (lite 200 / full 100 / ultra 50 / custom N / off)",
 		getArgumentCompletions: (prefix: string) => {
@@ -99,11 +111,12 @@ export default function goldfish(pi: ExtensionAPI) {
 				ctx.ui.notify(`Could not write ${levelPath()}: ${err}`, "error");
 				return;
 			}
+			syncStatus(ctx, token);
 			ctx.ui.notify(token === "off" ? "Goldfish off." : `Goldfish: ${token}`, "info");
 		},
 	});
 
-	pi.on("before_agent_start", async (event) => {
+	pi.on("before_agent_start", async (event, ctx) => {
 		let level = await readLevel();
 		const prompt = typeof event.prompt === "string" ? event.prompt : "";
 		const applied = applyPromptToLevel(prompt, level);
@@ -115,6 +128,7 @@ export default function goldfish(pi: ExtensionAPI) {
 			}
 			level = applied.level;
 		}
+		syncStatus(ctx, level);
 		if (level === "off") return;
 
 		let skill: string;
